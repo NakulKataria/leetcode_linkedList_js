@@ -1,0 +1,34 @@
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+better solution found with 0ms runtime on leetcode
+
+var addTwoNumbers = function(l1, l2) {
+    let sums = new ListNode();//dummy
+    let res = sums;
+    let total = 0;
+    let carry = 0;
+    while (l1 || l2 || carry)
+    {
+        total = carry;
+        if (l1)
+        {
+            total += l1.val;
+            l1 = l1.next;
+        }
+        if (l2)
+        {
+            total += l2.val;
+            l2 = l2.next;
+        }
+        carry = Math.floor(total / 10);
+        total = total % 10;
+        sums.next = new ListNode(total);
+        sums = sums.next;
+    }
+    return res.next;//to avoid dummy
+};
+
+loop l1 ya l2 nka element tab hi lera h jab vo null nhi h or uska node bhi tab hi bada rha h
+important note jinka kam hai bas unhe yad kro
